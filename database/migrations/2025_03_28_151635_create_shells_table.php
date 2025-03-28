@@ -11,16 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('commands', function (Blueprint $table) {
+        Schema::create('shells', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->unsignedBigInteger("shell_id");
-            $table->unsignedBigInteger("tag_id");
-            $table->string("explanation");
+            $table->string("description");
             $table->timestamps();
-
-            $table->foreign("shell_id")->references("id")->on("shells")->onDelete("cascade");
-            $table->foreign("tag_id")->references("id")->on("tags")->onDelete("cascade");
         });
     }
 
@@ -29,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('commands');
+        Schema::dropIfExists('shells');
     }
 };
